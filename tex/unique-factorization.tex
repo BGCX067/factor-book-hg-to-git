@@ -1,0 +1,340 @@
+%%-----------------------------------------------------------------------%%
+%%--- Unique Factorization ----------------------------------------------%%
+
+\chapter{Unique Factorization}
+
+
+%%-----------------------------------------------------------------------%%
+%%--- Divisibility ------------------------------------------------------%%
+
+\section{Divisibility}
+
+Denote the set of integers by\index{$\ZZ$}
+\[
+\ZZ
+=
+\{\dots, -3, -2, -1, 0, 1, 2, 3, \dots\}.
+\]
+Much of our exploration in number theory concerns the set of positive
+integers. An important fact about the positive integers is expressed
+by the
+\emph{well-ordering principle}\index{well-ordering principle}. This
+principle states that any nonempty set of positive integers
+contains a least element.
+
+\begin{theorem}
+\label{thm:unique_factorization:well_ordering_principle}
+\textbf{Well-ordering principle.}
+\index{well-ordering principle}
+Let $S$ be a nonempty set of positive integers. Then there is some
+$a \in S$ such that $a \leq b$ for all $b \in S$.
+\end{theorem}
+
+A \emph{prime}\index{prime} is an integer $p > 1$ that cannot be
+expressed as a product of positive integers other than 1 and $p$
+itself. Otherwise, $p$ is said to be
+\emph{composite}\index{composite}, i.e. it can be written as the
+product of two integers greater than 1. A (prime)
+\emph{factorization}\index{factorization} of an integer $n > 1$ is a
+decomposition of $n$ into primes, written as
+\[
+n
+=
+p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_r^{\alpha_r}
+\]
+where the $p_i$ are distinct primes and each $\alpha_i > 0$.
+
+For any $a,n \in \ZZ$, we say that $a$ \emph{divides}\index{divide}
+$n$ if $n = ab$ for some $b \in \ZZ$. The integer $a$ is also referred
+to as a \emph{divisor}\index{divisor} of $n$, and that $n$ is a
+\emph{multiple}\index{multiple} of $a$. If $a$ divides $n$, we
+express this relationship as $a \divides n$\index{$\divides$}, and
+similarly we write $a \notdivides n$\index{$\notdivides$} to mean that
+$a$ does not divide $n$. We could also say that $a$ is a
+\emph{factor}\index{factor} of $n$ or that $n$ is
+\emph{divisible}\index{divisible} by $a$. There is no restriction on
+whether $a$ must be positive, negative, or zero. Whenever we use the
+notation $a \divides n$, it is understood that $a \neq 0$. A
+\emph{prime divisor}\index{prime divisor} of $n$ is a prime $p$ such
+that $p \divides n$.
+
+\begin{lemma}
+\label{lem:unique_factorization:each_integer_greater_than_1_has_prime_divisor}
+\index{prime divisor}
+Every integer $n > 1$ has a prime divisor.
+\end{lemma}
+
+\begin{proof}
+If $n$ is prime, then we are done since $n$ divides itself. Otherwise
+$n = ab$ for two positive integers $a,b > 1$. If either $a$ or $b$ is
+prime, then we have the result. Otherwise we continue on factorizing
+the current divisors to obtain smaller and smaller divisors of
+$n$. This process of factorizing must halt after a finite number of
+steps because of finite descent\index{finite descent}, i.e. there is
+no infinite sequence of descending positive integers.
+\end{proof}
+
+\begin{theorem}
+\label{thm:unique_factorization:division_algorithm}
+\textbf{Division algorithm.}
+\index{division algorithm}
+If $a,b$ are integers such that $b > 0$, then there exist unique
+integers $q,r$ such that $a = bq + r$ and $0 \leq r < b$.
+\end{theorem}
+
+\begin{proof}
+For the case of existence, consider the set
+\[
+S
+=
+\{a - bn \divides n \in \ZZ \text{ and } a - bn \geq 0 \}.
+\]
+We claim that $S$ is nonempty. Since $b \geq 1$, then $|a|b \geq |a|$
+and
+\[
+a - (-|a|)b
+=
+a + |a|b \geq a + |a| \geq 0.
+\]
+Choosing $n = -|a|$, we see that $a - bn \in S$ and thus $S$ is not
+empty. By the well-ordering\index{well-ordering principle}
+principle~(Theorem~\ref{thm:unique_factorization:well_ordering_principle}),
+$S$ has a least element, say, $r = a - bq$ for some $q \in \ZZ$. Now
+$0 \leq r$ by definition of $S$. Suppose for contradiction that
+$r \geq b$. Then
+\[
+0 \leq r - b = (a - bq) - b = a - b(q + 1)
+\]
+and $r - b \in S$ by definition. Thus $a - b(q + 1) = r - b < r$ so
+that $r - b$ is an element of $S$ that is smaller than $r$, in
+contradiction of our assumption that $r$ is the smallest element of
+$S$. It follows that $r < b$ and we have found integers $r,q$
+satisfying $a = bq + r$ and $0 \leq r < b$.
+
+For the case of uniqueness, suppose we have integers $r^\prime$ and
+$q^\prime$ that also satisfy $a = bq^{\prime} + r^{\prime}$. Then
+$0 \leq r^\prime < b$ and
+%
+\begin{equation}
+\label{eq:unique_factorization:two_remainders}
+r - r^\prime
+=
+b(q^\prime - q).
+\end{equation}
+%
+Multiply $0 \leq r^\prime < b$ through by $-1$ yields $0 \geq
+-r^\prime > -b$ and consider the pair of inequalities
+\[
+\begin{array}{rcccl}
+-b &<   & -r^\prime &\leq & 0, \\
+0 &\leq & r         &<    & b.
+\end{array}
+\]
+Add them together term by term gives $-b < r - r^\prime < b$.
+Substituting~(\ref{eq:unique_factorization:two_remainders}) into the
+last inequality and simplifying gives $-b < b(q^\prime - q) < b$,
+which implies that $-1 < q^\prime - q < 1$. Since $q^\prime$ and $q$
+are integers, then their difference is also an integer. The only
+integer within the open interval $(-1, 1)$ is 0 and we must have
+$q^\prime - q = 0$. Substituting this
+into~(\ref{eq:unique_factorization:two_remainders}) gives
+$r - r^\prime = 0$, thus $r = r^\prime$ and $q = q^\prime$. Therefore
+$r$ and $q$ are unique.
+\end{proof}
+
+
+%%-----------------------------------------------------------------------%%
+%%--- The Fundamental Theorem of Arithmetic -----------------------------%%
+
+\section{The Fundamental Theorem of Arithmetic}
+\index{Fundamental Theorem of Arithmetic}
+
+Let $a,b \in \ZZ$ such that at least one of $a$ or $b$ is different
+from zero. The
+\emph{greatest common divisor}\index{greatest common divisor} of $a$
+and $b$, written $\gcd(a,b)$\index{$\gcd$}, is the positive integer
+$d$ satisfying
+%
+\begin{enumerate}
+\item $d \divides a$ and $d \divides b$
+
+\item if $c \divides a$ and $c \divides b$ for some $c \in \ZZ$, then $c
+  \leq d$.
+\end{enumerate}
+%
+We extend this definition by setting $\gcd(0,0) = 0$. If
+$\gcd(a,b) = 1$, we say that $a$ and $b$ are
+\emph{relatively prime}\index{relatively prime} or
+\emph{coprime}\index{coprime}.
+
+\begin{theorem}
+\label{thm:unique_factorization:divides_any_two_terms_then_divides_third}
+For all $a,b,c \in \ZZ$, if $n$ divides any two of $a,b,c$ in
+the equation $a = b + c$, then $n$ divides the third.
+\end{theorem}
+
+\begin{proof}
+Let $a,b,c$ be integers satisfying the equation $a = b + c$. If
+$n$ is an integer that divides any two terms in the latter equation, then
+we distinguish three separate cases.
+%
+\begin{enumerate}
+\item If $n \divides a$ and $n \divides b$, then by definition $a = nx$ and
+  $b = ny$ for some $x,y \in \ZZ$. Substituting these into the
+  equation and simplifying gives $nx = (ny) + c$, which implies that
+  $c = n(x - y)$ and hence $n \divides c$.
+
+\item If $n \divides a$ and $n \divides c$, we use an argument similar to
+  the above.
+
+\item If $n \divides b$ and $n \divides c$, apply the same argument as in
+  the first case.
+\end{enumerate}
+%
+In each of these three cases, we see that whenever $n$ divides any
+two terms in the equation $a = b + c$, then $n$ also divides the
+third term.
+\end{proof}
+
+\begin{theorem}
+\label{thm:unique_factorization:Bezout's_identity}
+\textbf{B\'ezout's identity.}\index{B\'ezout's identity}
+If $a,b$ are integers such that both are not zero, then there exist
+integers $x,y$ such that $\gcd(a,b) = ax + by$.
+\end{theorem}
+
+\begin{proof}
+Consider the set of linear combinations
+\[
+S
+=
+\{au + bv \divides u,v \in \ZZ\}.
+\]
+Let $c = am + bn$ be the smallest positive integer in $S$ for
+some $m,n \in \ZZ$. Since $c > 0$, by the division
+algorithm~(Theorem~\ref{thm:unique_factorization:division_algorithm})
+there exist $q,r \in \ZZ$ such that $a = qc + r$, where
+$0 \leq r < c$. The remainder $r$ can be expressed as $r = a - qc$
+and, since $c = am + bn$, so we have $r = a - q(am+bn) = a(1-mq) - bnq$,
+which implies that $r = a(1-mq) + b(-nq)$. By hypothesis, $0 \leq r < c$.
+If $r \neq 0$, then $r$ is a positive integer such that $r < c$. But
+then $r$ is expressible as a linear combination in terms of $a$ and
+$b$ and hence $r \in S$ by definition of $S$. Here lies a
+contradiction because $c \in S$ is by assumption the smallest positive
+integer expressible as a linear combination of $a$ and $b$. Hence
+$r = 0$. Since $a = qc + r$ and $r = 0$, then $a = qc$ and hence
+$c \divides a$. A similar argument shows that $c \divides b$.
+
+We have shown that with $c = am + bn$, then $c$ divides each of $a$
+and $b$. We now demonstrate that $c = \gcd(a,b)$. Let $d = \gcd(a,b)$
+and so by definition we have $d \divides a$ and $d \divides b$, hence
+by
+Theorem~\ref{thm:unique_factorization:divides_any_two_terms_then_divides_third}
+we have $d \,|\, c$ and by definition $c = dz$ for some integer
+$z$. Since $c$ and $d$ are both positive by
+assumption, $z$ must be a natural number. If $z > 1$ then $c$ is a
+common divisor of both $a$ and $b$ such that $c > d$, in
+contradiction of our assumption that $d = \gcd(a,b)$. Thus $z = 1$
+and it follows that $c = d$. Therefore $\gcd(a,b) = ax + by$ for
+some $x,y \in \ZZ$.
+\end{proof}
+
+\begin{corollary}
+\label{cor:unique_factorization:prime_divisor_property}
+\textbf{Prime divisor property.}
+\index{prime divisor property}
+Let $a,b$ be positive integers and let $p$ be prime. If $p \divides ab$,
+then $p \divides a$ or $p \divides b$.
+\end{corollary}
+
+\begin{proof}
+Let $p$ be prime and let $a,b > 1$ be integers such that
+$p \divides ab$. If $p \divides a$, then we are done. Otherwise
+$\gcd(p,a) = 1$ and we need to show that $p$ divides $b$. Since $p$
+and $a$ are coprime, use B\'ezout's
+identity~(Theorem~\ref{thm:unique_factorization:Bezout's_identity})
+\index{B\'ezout's identity} to express them as the linear combination
+$1 = am + pn$ for some $m,n \in \ZZ$. Multiplying both sides by $b$
+gives $b = abm + bnp$. By assumption $p \divides ab$ and it is obvious
+that $p \divides bp$. Hence $p$ divides the two terms $abm$ and $bnp$
+in the linear combination $b = abm + bnp$. By
+Theorem~\ref{thm:unique_factorization:divides_any_two_terms_then_divides_third},
+it follows that $p$ divides $b$ as required.
+\end{proof}
+
+\begin{corollary}
+\label{cor:unique_factorization:divides_product_then_divides_one_term}
+If a prime $p$ divides the product $a_1 a_2 a_3 \cdots a_n$ for some
+positive integer $n$, then $p \divides a_i$ for some integer
+$1 \leq i \leq n$.
+\end{corollary}
+
+\begin{proof}
+If $p \divides a_{n}$ then we are done. Otherwise it must be the case
+that $p, a_n$ are coprime. Then repeated use of
+Corollary~\ref{cor:unique_factorization:prime_divisor_property}
+shows\index{prime divisor property} that $p$ divides one of
+$a_1, a_2, a_3, \dots, a_{n-1}$.
+\end{proof}
+
+With necessary preparation out of the way, we now come to the
+culmination of this chapter: the Fundamental Theorem of
+Arithmetic\index{Fundamental Theorem of Arithmetic}. This theorem
+asserts that any integer $n > 1$ can be factored into primes in
+essentially one way. A prime factorization such as
+$2 \cdot 3 \cdot 2$ is not considered as being different from
+$2 \cdot 2 \cdot 3$.
+
+\begin{theorem}
+\label{thm:unique_factorization:Fundamental_Theorem_Arithmetic}
+\textbf{Fundamental Theorem of Arithmetic.}
+\index{Fundamental Theorem of Arithmetic}
+\index{uniqueness of prime factorization}
+Any integer $n > 1$ can be factored into a product of primes. This
+representation is unique, apart from the order in which the factors
+occur.
+\end{theorem}
+
+\begin{proof}
+First, we establish the case of existence of a prime factorization for
+each integer $n > 1$. By
+Lemma~\ref{lem:unique_factorization:each_integer_greater_than_1_has_prime_divisor},
+each integer $n > 1$ has a prime divisor. Repeated application of this
+lemma on the divisors of $n$ yields a factorization of $n$ into a
+product of primes.
+
+For the case of uniqueness, suppose $n > 1$ is the smallest integer
+that has two distinct prime factorizations
+\[
+n
+=
+\prod_{i=1}^s p_i
+=
+\prod_{j=1}^t q_j.
+\]
+By the definition of $n$, for all $1 \leq i \leq s$ we have
+$p_i \neq q_j$ for any $1 \leq j \leq t$. Clearly $p_1$ divides
+$\prod_{j=1}^t q_j$ and by
+Corollary~\ref{cor:unique_factorization:divides_product_then_divides_one_term},
+$p_1$ divides one of the terms $q_j$. This is a contradiction because
+it implies that one of the primes $q_j$ is composite or equal to
+$p_1$. Therefore, prime factorization is unique.
+\end{proof}
+
+Several of the primes that appear in the factorization of a given
+positive integer may be repeated. By collecting like primes and
+replacing them by a single factor, we could rephrase
+Theorem~\ref{thm:unique_factorization:Fundamental_Theorem_Arithmetic}
+as follows.
+
+\begin{corollary}
+Any positive integer $n > 1$ can be written uniquely in a
+\emph{canonical form}\index{canonical form}
+\[
+n
+=
+p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_r^{\alpha_r}
+\]
+where each $\alpha_i$ is a positive integer and each $p_i$ is a prime,
+with $p_1 < p_2 < \cdots < p_r$.
+\end{corollary}
