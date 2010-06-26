@@ -1,0 +1,124 @@
+%%-----------------------------------------------------------------------%%
+%%--- Preamble ----------------------------------------------------------%%
+
+\documentclass[a4paper,twoside,12pt]{book}
+\usepackage[latin1]{inputenc}
+
+%% For typesetting algorithms and pseudocode
+\usepackage[algochapter,boxed,linesnumbered,vlined]{algorithm2e}
+\incmargin{1em}
+\decmargin{1em}
+\restylealgo{boxed}  %% a box around the algorithm
+\Setnlsty{}{}{}  %% don't bold the line numbers
+\SetAlTitleFnt{}  %% don't bold the text "Algorithm" in the caption
+\setalcapskip{5pt}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx,url}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{makeidx}
+\usepackage{xspace}
+\usepackage{enumerate}
+\usepackage{fancyvrb}
+\usepackage{moreverb}
+
+%% Customized corollary, lemma, theorem, etc. numbering
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+%% Package for drawing figures
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{matrix}
+\usetikzlibrary{trees}
+\usepackage{subfigure}
+
+%% For typesetting code listings
+\usepackage{listings}
+\lstset{language={},
+  keepspaces=true,
+  xleftmargin=5mm,
+  xrightmargin=5mm,
+  basicstyle=\ttfamily,
+  frame=single,
+  framesep=2mm,
+  framerule=0pt,
+  % frameround=tttt,
+  columns=flexible,
+  backgroundcolor=\color[gray]{0.9},
+  rulesepcolor=\color{black},
+  % numbers=left,
+  numberstyle=\footnotesize,
+  language=Pascal
+}
+
+%% Customized page geometry
+\textwidth=450pt
+\textheight=700pt
+\topmargin=-30pt
+\oddsidemargin=0.0pt
+\evensidemargin=0.0pt
+
+%% Format date in the form 12 March 2007, for example.
+\usepackage{datetime}
+\newdateformat{auDateFormat}{%
+  \twodigit{\THEDAY}~\monthname[\THEMONTH]~\THEYEAR
+}
+\auDateFormat
+
+%% Custom commands and shortcuts
+\newcommand{\RR}{\mathbf{R}}  %% set of real numbers
+\newcommand{\ZZ}{\mathbf{Z}}  %% set of integers
+\newcommand{\divides}{\;|\;}
+\newcommand{\notdivides}{\;\nmid\;}
+
+\makeindex
+
+
+%%-----------------------------------------------------------------------%%
+%%--- Document body -----------------------------------------------------%%
+
+\begin{document}
+
+\title{\Huge{\bf{Primes and Factorization}}}
+\author{\Large{Minh Van Nguyen}}
+\date{\today}
+\maketitle
+
+%% front matter
+\frontmatter
+% Setting the TOC depth: only list chapters and sections
+\setcounter{tocdepth}{1}
+\tableofcontents
+\listofalgorithms
+\addcontentsline{toc}{chapter}{List of Algorithms}
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+
+\mainmatter
+
+%% Main document body
+\input{tex/unique-factorization.tex}
+
+%% Appendices
+\appendix
+\input{tex/license-gfdl.tex}
+
+%% %% Back matter
+%% \backmatter
+%% \bibliographystyle{bibliography.bst}
+%% \bibliography{bibliography.bib}
+\printindex
+
+\end{document}
