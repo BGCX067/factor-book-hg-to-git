@@ -76,6 +76,8 @@
 \auDateFormat
 
 %% Custom commands and shortcuts
+%% the latest version of this document
+\newcommand{\documentEdition}{\input{tex/version}}
 \newcommand{\RR}{\mathbf{R}}  %% set of real numbers
 \newcommand{\ZZ}{\mathbf{Z}}  %% set of integers
 \newcommand{\divides}{\;|\;}
@@ -91,20 +93,28 @@
 
 \title{\Huge{\bf{Primes and Factorization}}}
 \author{\Large{Minh Van Nguyen}}
-\date{\today}
+\date{Version~\documentEdition}
 \maketitle
+
+%% Copyright page
+{\thispagestyle{empty}
+  \input{tex/notice.tex} \\\\
+  \textbf{Edition} \\
+  Version~\documentEdition \\
+  \today
+}
 
 %% front matter
 \frontmatter
 % Setting the TOC depth: only list chapters and sections
 \setcounter{tocdepth}{1}
 \tableofcontents
-\listofalgorithms
-\addcontentsline{toc}{chapter}{List of Algorithms}
-\listoffigures
-\addcontentsline{toc}{chapter}{List of Figures}
-\listoftables
-\addcontentsline{toc}{chapter}{List of Tables}
+%% \listofalgorithms
+%% \addcontentsline{toc}{chapter}{List of Algorithms}
+%% \listoffigures
+%% \addcontentsline{toc}{chapter}{List of Figures}
+%% \listoftables
+%% \addcontentsline{toc}{chapter}{List of Tables}
 
 \mainmatter
 
