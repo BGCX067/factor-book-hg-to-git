@@ -1,0 +1,29 @@
+Primes and Factorization
+https://code.google.com/p/factor-book/
+
+A GNU-FDL [1] book on algorithms for factorization by Minh Van Nguyen [2].
+The book is written using the LaTeX [3] document preparation system. It uses
+Mercurial [4] as its version control system. To clone the latest
+revision of the book, ensure you have Mercurial installed on your
+system. Then issue any of the following commands from your command
+line:
+
+$ hg clone https://factor-book.googlecode.com/hg/ factor-book
+$ hg clone http://factor-book.googlecode.com/hg/ factor-book
+
+To compile a PDF version of the book, run the command
+
+$ make
+
+To delete junk files resulting from the compilation process, run
+
+$ make clean
+
+The file util.sh is a script that interfaces with utilities under the
+directory bin/.
+
+
+[1] http://www.gnu.org/copyleft/fdl.html
+[2] http://sites.google.com/site/nguyenminh2
+[3] http://www.latex-project.org
+[4] http://mercurial.selenic.com
