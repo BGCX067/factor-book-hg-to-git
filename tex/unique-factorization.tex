@@ -338,3 +338,23 @@ p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_r^{\alpha_r}
 where each $\alpha_i$ is a positive integer and each $p_i$ is a prime,
 with $p_1 < p_2 < \cdots < p_r$.
 \end{corollary}
+
+
+%%-----------------------------------------------------------------------%%
+%%--- Trial division ----------------------------------------------------%%
+
+\section{Trial division}
+\index{trial division}
+
+\begin{theorem}
+\label{thm:unique_factorization:prime_divisor_less_than_sqrt_n}
+If $n > 1$ is composite\index{composite}, then $n$ has a prime divisor
+$p$ such that $p \leq \sqrt{n}$.
+\end{theorem}
+
+\begin{proof}
+In the canonical prime factorization of $n$, let $p$ be the least
+prime divisor of $n$. If $n = st$ for some integers $s,t > 1$, then
+$p \leq s$ and $p \leq t$. Multiply the last two inequalities
+term-by-term to get $p^2 \leq st = n$ and therefore $p \leq \sqrt{n}$.
+\end{proof}
