@@ -347,7 +347,7 @@ with $p_1 < p_2 < \cdots < p_r$.
 \index{trial division}
 
 \begin{theorem}
-\label{thm:unique_factorization:prime_divisor_less_than_sqrt_n}
+\label{thm:unique_factorization:prime_divisor_leq_sqrt_n}
 If $n > 1$ is composite\index{composite}, then $n$ has a prime divisor
 $p$ such that $p \leq \sqrt{n}$.
 \end{theorem}
@@ -357,4 +357,14 @@ In the canonical prime factorization of $n$, let $p$ be the least
 prime divisor of $n$. If $n = st$ for some integers $s,t > 1$, then
 $p \leq s$ and $p \leq t$. Multiply the last two inequalities
 term-by-term to get $p^2 \leq st = n$ and therefore $p \leq \sqrt{n}$.
+\end{proof}
+
+\begin{corollary}
+An integer $p > 1$ is prime if and only if it is not divisible by any
+prime $q$, where $1 < q \leq \sqrt{p}$.
+\end{corollary}
+
+\begin{proof}
+Follows from the definition of prime and
+Theorem~\ref{thm:unique_factorization:prime_divisor_leq_sqrt_n}.
 \end{proof}
