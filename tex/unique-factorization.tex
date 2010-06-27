@@ -75,6 +75,7 @@ no infinite sequence of descending positive integers.
 \end{proof}
 
 \begin{lemma}
+\index{infinitely many primes}
 There are infinitely many primes.
 \end{lemma}
 
@@ -422,21 +423,22 @@ $P \assign [\,]$ \nllabel{alg:Eratosthenes:get_primes_start}\;
 }
 \Return $P$ \nllabel{alg:Eratosthenes:get_primes_end}\;
 \caption{The Sieve of Eratosthenes.}
+\index{Sieve of Eratosthenes}
 \label{alg:unique_factorization:sieve_eratosthenes}
 \end{algorithm}
 
 Eratosthenes used
 Corollary~\ref{cor:unique_factorization:n_prime_iff_not_divisible_by_prime_leq_sqrt_n}
 as the basis of a clever technique, called the ``Sieve of
-Eratosthenes,'' for finding all primes below a given integer
-$n > 1$. Start by listing all the integers from 2 to $n$. Then
-eliminate all the composite numbers by striking out all multiples
-$2p, 3p, 4p, 5p, \dots$ of the primes $p \leq \sqrt{n}$. The remaining
-integers on the list are primes.
+Eratosthenes,''\index{Sieve of Eratosthenes} for finding all primes
+below a given integer $n > 1$. Start by listing all the integers from
+2 to $n$. Then eliminate all the composite numbers by striking out all
+multiples $2p, 3p, 4p, 5p, \dots$ of the primes $p \leq \sqrt{n}$. The
+remaining integers on the list are primes.
 
-The Sieve of Eratosthenes is summarized in
-Algorithm~\ref{alg:unique_factorization:sieve_eratosthenes}. The loop
-starting from line~\ref{alg:Eratosthenes:all_integers_leq_sqrt_n}
+The Sieve of Eratosthenes\index{Sieve of Eratosthenes} is summarized
+in Algorithm~\ref{alg:unique_factorization:sieve_eratosthenes}. The
+loop starting from line~\ref{alg:Eratosthenes:all_integers_leq_sqrt_n}
 considers all integers $\leq \sqrt{n}$. Its worst-case runtime is
 $O(\sqrt{n})$. Line~\ref{alg:Eratosthenes:primality_test} is a
 primality test. If $a_j \neq 0$, then $a_j$ is
