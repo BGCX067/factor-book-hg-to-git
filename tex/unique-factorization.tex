@@ -106,6 +106,21 @@ notation $a \divides n$, it is understood that $a \neq 0$. A
 \emph{prime divisor}\index{prime divisor} of $n$ is a prime $p$ such
 that $p \divides n$.
 
+\begin{lstlisting}
+sage: a = 27; b = 3
+sage: a.divides(b)
+False
+sage: b.divides(a)
+True
+sage: n = randint(-10^100, 10^100)
+sage: p = random_prime(randint(0, 10^100))
+sage: n = n * p
+sage: n.divides(p)
+False
+sage: p.divides(n)
+True
+\end{lstlisting}
+
 \begin{lemma}
 \label{lem:unique_factorization:each_integer_greater_than_1_has_prime_divisor}
 \index{prime divisor}
@@ -121,6 +136,24 @@ $n$. This process of factorizing must halt after a finite number of
 steps because of finite descent\index{finite descent}, i.e. there is
 no infinite sequence of descending positive integers.
 \end{proof}
+
+\begin{lstlisting}
+sage: # First determine all the divisors, then find a prime divisor.
+sage: n = randint(-10^50, 10^50)
+sage: D = divisors(n)
+sage: for d in D:
+...       if is_prime(d):
+...           print("n has a prime divisor")
+...           break
+n has a prime divisor
+sage: # Or using the iter protocol.
+sage: n = randint(-10^50, 10^50)
+sage: for d in iter(divisors(n)):
+...       if is_prime(d):
+...           print("n has a prime divisor")
+...           break
+n has a prime divisor
+\end{lstlisting}
 
 \begin{lemma}
 \index{infinitely many primes}
