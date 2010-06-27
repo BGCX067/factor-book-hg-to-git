@@ -595,3 +595,59 @@ remaining in the list $A$. The loop in this fetching step has runtime
 $O(n)$. In total, the worst-case runtime of
 Algorithm~\ref{alg:unique_factorization:sieve_eratosthenes} is
 $O(n + n) = O(2n)$.
+
+The Fundamental Theorem of
+Arithmetic~(Theorem~\ref{thm:unique_factorization:Fundamental_Theorem_Arithmetic})
+guarantees that each integer $n > 1$ can be uniquely factored into
+primes. In practice, we can obtain all the prime factors of $n$ by a
+combination of trial division and the Sieve of
+Eratosthenes~(Algorithm~\ref{alg:unique_factorization:sieve_eratosthenes}). Use
+the Sieve of Eratosthenes to produce a list of all primes
+$\leq \sqrt{n}$ and the least prime $\geq \sqrt{n}$. That is,
+\[
+D
+=
+[d_0, d_1, d_2, \dots, d_{k-1}, d_k]
+\]
+where $d_0, \dots, d_{k-1}$ are all primes $\leq \sqrt{n}$, $d_k$ is
+the least prime $\geq \sqrt{n}$, and
+\[
+d_0 < d_1 < d_2 < \cdots < d_k.
+\]
+The list $D$ is called the list of \emph{candidate prime divisors}
+\index{candidate prime divisors} of $n$. If $n$ is prime, then by
+Corollary~\ref{cor:unique_factorization:n_prime_iff_not_divisible_by_prime_leq_sqrt_n}
+none of the $d_i$ is a factor of $n$. If any $d_i$ divides $n$, then
+repeatedly divide $n$ by $d_i$ as many times as possible. The
+procedure is summarized in
+Algorithm~\ref{alg:unique_factorization:trial_division}.
+
+\begin{algorithm}[!htpb]
+%% no semicolon at end of pseudocode statements
+\dontprintsemicolon
+%% data section
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+%% input/output
+\Input{An integer $n > 1$. A list
+  $D = [d_0, d_1, d_2, \dots, d_{k-1}, d_k]$ of candidate prime
+  divisors of $n$.}
+\Output{A prime factorization of $n$.}
+\BlankLine
+%% algorithm body
+$N \assign n$\;
+$P \assign [\,]$ \tcc*[f]{list of prime factors of $n$}\;
+\For{$i \assign 0,\dots,k$}{
+  \While{$\gcd(d_i, N) > 1$}{
+    append $d_i$ to $P$\;
+    $N \assign N / d_i$\;
+  }
+}
+\If{$\length(P) = 0$}{
+  \Return $n$\;
+}
+\Return $P$\;
+\caption{Prime factorization by trial division.}
+\index{trial division}
+\label{alg:unique_factorization:trial_division}
+\end{algorithm}
