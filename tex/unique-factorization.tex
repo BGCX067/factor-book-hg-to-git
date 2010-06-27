@@ -55,6 +55,43 @@ p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_r^{\alpha_r}
 \]
 where the $p_i$ are distinct primes and each $\alpha_i > 0$.
 
+\begin{lstlisting}
+sage: P = Primes(); P
+Set of all prime numbers: 2, 3, 5, 7, ...
+sage: p = P.first(); p
+2
+sage: p = P.next(p); p
+3
+sage: p = P.next(p); p
+5
+sage: p = P.next(p); p
+7
+sage: p = P.next(p); p
+11
+sage: list(primes(50))
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+sage: prime_range(0, 50)
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+sage: prime_range(50)
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+sage: n = len(prime_range(50))
+sage: primes_first_n(n)
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+sage: p = 1
+sage: p = next_prime(p); p
+2
+sage: p = next_prime(p); p
+3
+sage: p = next_prime(p); p
+5
+sage: p = next_prime(p); p
+7
+sage: p = next_prime(p); p
+11
+sage: map(is_prime, prime_range(40))
+[True, True, True, True, True, True, True, True, True, True, True, True]
+\end{lstlisting}
+
 For any $a,n \in \ZZ$, we say that $a$ \emph{divides}\index{divide}
 $n$ if $n = ab$ for some $b \in \ZZ$. The integer $a$ is also referred
 to as a \emph{divisor}\index{divisor} of $n$, and that $n$ is a
