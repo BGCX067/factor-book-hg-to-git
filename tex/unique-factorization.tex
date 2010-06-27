@@ -248,6 +248,32 @@ $r$ and $q$ are unique.
 The remainder $r$ is also written as $r = a \bmod b$\index{$\bmod$}. The
 operator $\bmod$ means, ``the remainder when $a$ is divided by $b$.''
 
+\begin{lstlisting}
+sage: a = 27; b = 4
+sage: q = a // b; q
+6
+sage: r = a % b; r
+3
+sage: a == q*b + r
+True
+sage: q, r = divmod(a, b)
+sage: a == q*b + r
+True
+sage: r = mod(a, b).lift()
+sage: a == q*b + r
+True
+sage: q, r = a.quo_rem(b)
+sage: a == q*b + r
+True
+sage: a = Integer(randint(-10^100, 10^100))
+sage: b = Integer(randint(-10^100, 10^100))
+sage: while b > a:
+...       b = Integer(randint(-10^100, 10^100))
+sage: q, r = a.quo_rem(b)
+sage: a == q*b + r
+True
+\end{lstlisting}
+
 
 %%-----------------------------------------------------------------------%%
 %%--- The Euclidean algorithm -------------------------------------------%%
