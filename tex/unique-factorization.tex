@@ -74,6 +74,27 @@ steps because of finite descent\index{finite descent}, i.e. there is
 no infinite sequence of descending positive integers.
 \end{proof}
 
+\begin{lemma}
+There are infinitely many primes.
+\end{lemma}
+
+\begin{proof}
+Our proof is by contradiction. Suppose there are finitely many primes,
+say $P = \{p_1, p_2, p_3, \dots, p_n\}$. Construct the integer
+\[
+N
+=
+p_1 p_2 p_3 \cdots p_n + 1.
+\]
+By
+Lemma~\ref{lem:unique_factorization:each_integer_greater_than_1_has_prime_divisor},
+$N$ has a prime divisor, say $p$. This prime $p$ cannot belong to $P$
+since dividing $N$ by each element of $P$ gives a remainder of 1. Thus
+$p$ is a prime not in the set $P$, which contradicts our assumption
+that $P$ contains all the primes. Therefore there are infinitely many
+primes.
+\end{proof}
+
 \begin{theorem}
 \label{thm:unique_factorization:division_algorithm}
 \textbf{Division algorithm.}
