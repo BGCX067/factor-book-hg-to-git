@@ -727,9 +727,8 @@ sage: 27*s + 12*t
 sage: a = Integer(randint(-10^200, 10^200))
 sage: b = Integer(randint(-10^200, 10^200))
 sage: while (a == 0) and (b == 0):
-....:     a = Integer(randint(-10^200, 10^200))
-....:     b = Integer(randint(-10^200, 10^200))
-....:
+...       a = Integer(randint(-10^200, 10^200))
+...       b = Integer(randint(-10^200, 10^200))
 sage: D, S, T = xgcd(a, b)
 sage: s, t = my_xgcd(a, b)
 sage: S == s; T == t
