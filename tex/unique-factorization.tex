@@ -429,6 +429,30 @@ r_{n-1} &= r_n q_{n+1} + 0.
 The Euclidean algorithm states that $r_n$, the last nonzero remainder
 which appears in this manner, is equal to $\gcd(a,b)$.
 
+\begin{algorithm}[!htpb]
+%% no semicolon at end of pseudocode statements
+\dontprintsemicolon
+%% data section
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+%% input/output
+\Input{Two integers $a > 0$ and $b \geq 0$.}
+\Output{The greatest common divisor of $a,b$.}
+\BlankLine
+%% algorithm body
+$x \assign a$\;
+$y \assign b$\;
+\While{$y \neq 0$}{
+  $r \assign x \mod y$\;
+  $x \assign y$\;
+  $y \assign r$\;
+}
+\Return $x$\;
+\caption{The Euclidean algorithm.}
+\index{Euclidean algorithm}
+\label{alg:unique_factorization:Euclidean_algorithm}
+\end{algorithm}
+
 \begin{theorem}
 \label{thm:unique_factorization:Euclidean_algorithm}
 \textbf{Euclidean algorithm.}
@@ -480,31 +504,48 @@ as required.
 \end{proof}
 
 The Euclidean algorithm can be directly translated into algorithmic
-form as follows:
+form as presented in
+Algorithm~\ref{alg:unique_factorization:Euclidean_algorithm}.
 
-\begin{algorithm}[!htpb]
-%% no semicolon at end of pseudocode statements
-\dontprintsemicolon
-%% data section
-\SetKwInOut{Input}{Input}
-\SetKwInOut{Output}{Output}
-%% input/output
-\Input{Two integers $a > 0$ and $b \geq 0$.}
-\Output{The greatest common divisor of $a,b$.}
-\BlankLine
-%% algorithm body
-$x \assign a$\;
-$y \assign b$\;
-\While{$y \neq 0$}{
-  $r \assign x \mod y$\;
-  $x \assign y$\;
-  $y \assign r$\;
-}
-\Return $x$\;
-\caption{The Euclidean algorithm.}
-\index{Euclidean algorithm}
-\label{alg:unique_factorization:Euclidean_algorithm}
-\end{algorithm}
+\begin{lstlisting}
+sage: def my_gcd(a, b):
+...       """
+...       Return the GCD of and b.
+...
+...       INPUT:
+...
+...       - a -- integer > 0
+...       - b -- integer >= 0; a >= b
+...
+...       OUTPUT:
+...
+...       gcd(a,b)
+...       """
+...       x = a
+...       y = b
+...       while y != 0:
+...           r = mod(x, y).lift()
+...           x = y
+...           y = r
+...       return x
+sage: my_gcd(42, 12)
+6
+sage: gcd(42, 12)
+6
+sage: a = Integer(randint(1, 10^200))
+sage: b = Integer(randint(0, 10^200))
+sage: while a < b:
+...       b = Integer(randint(0, 10^200))
+sage: my_gcd(a, b) == gcd(a, b)
+True
+sage: q, r = a.quo_rem(b)
+sage: gcd(a, b) == gcd(b, r)
+True
+sage: my_gcd(a, b) == my_gcd(b, r)
+True
+sage: gcd(b, r) == my_gcd(b, r)
+True
+\end{lstlisting}
 
 \begin{theorem}
 \label{thm:unique_factorization:Bezout's_identity}
