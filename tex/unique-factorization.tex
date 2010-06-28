@@ -843,6 +843,30 @@ where each $\alpha_i$ is a positive integer and each $p_i$ is a prime,
 with $p_1 < p_2 < \cdots < p_r$.
 \end{corollary}
 
+\begin{lstlisting}
+sage: F = factor(28); F
+2^2 * 7
+sage: type(F)
+<class 'sage.structure.factorization.Factorization'>
+sage: P = [p for p, _ in F]
+sage: map(is_prime, P)
+[True, True]
+sage: F = [(p, e) for p, e in F]; F
+[(2, 2), (7, 1)]
+sage: 28 == prod(p^e for p, e in F)
+True
+sage: # do the same for a random integer
+sage: n = randint(4, 10^50)
+sage: F = factor(n)
+sage: type(F)
+<class 'sage.structure.factorization.Factorization'>
+sage: P = [p for p, _ in F]
+sage: all(map(is_prime, P))
+True
+sage: n == prod(p^e for p, e in F)
+True
+\end{lstlisting}
+
 
 %%-----------------------------------------------------------------------%%
 %%--- Trial division ----------------------------------------------------%%
