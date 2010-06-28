@@ -298,6 +298,29 @@ $\gcd(a,b) = 1$, we say that $a$ and $b$ are
 \emph{relatively prime}\index{relatively prime} or
 \emph{coprime}\index{coprime}.
 
+\begin{lstlisting}
+sage: gcd(42, 8)
+2
+sage: gcd(0, 0)
+0
+sage: # any two distinct primes are coprime
+sage: p = random_prime(10^100)
+sage: q = random_prime(10^100)
+sage: while p == q:
+...       q = random_prime(10^100)
+sage: gcd(p, q)
+1
+sage: # if d = gcd(a,b), then d divides both a and b
+sage: a = Integer(randint(-10^100, 10^100))
+sage: b = Integer(randint(-10^100, 10^100))
+sage: while a == b:
+...       b = Integer(randint(-10^100, 10^100))
+sage: d = gcd(a, b)
+sage: d.divides(a); d.divides(b)
+True
+True
+\end{lstlisting}
+
 \begin{theorem}
 \label{thm:unique_factorization:divides_any_two_terms_then_divides_third}
 For all $a,b,c \in \ZZ$, if $n$ divides any two of $a,b,c$ in
@@ -332,6 +355,23 @@ third term.
 Let $a,b,q,r \in \ZZ$ with $b > 0$ and $0 \leq r < b$ such that
 $a = bq + r$. Then $\gcd(a,b) = \gcd(b,r)$.
 \end{lemma}
+
+\begin{lstlisting}
+sage: a = 42; b = 8
+sage: q, r = a.quo_rem(b); q; r
+5
+2
+sage: gcd(a, b); gcd(b, r)
+2
+2
+sage: a = Integer(randint(-10^100, 10^100))
+sage: b = Integer(randint(-10^100, 10^100))
+sage: while a == b:
+...       b = Integer(randint(-10^100, 10^100))
+sage: q, r = a.quo_rem(b)
+sage: gcd(a, b) == gcd(b, r)
+True
+\end{lstlisting}
 
 \begin{proof}
 Let $a,b,q,r \in \ZZ$ such that $a = bq + r$ where $b > 0$ and
