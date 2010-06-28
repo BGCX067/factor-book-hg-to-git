@@ -509,18 +509,16 @@ Algorithm~\ref{alg:unique_factorization:Euclidean_algorithm}.
 
 \begin{lstlisting}
 sage: def my_gcd(a, b):
-...       """
-...       Return the GCD of and b.
-...
-...       INPUT:
-...
-...       - a -- integer > 0
-...       - b -- integer >= 0; a >= b
-...
-...       OUTPUT:
-...
-...       gcd(a,b)
-...       """
+...       # Return the GCD of and b.
+...       #
+...       # INPUT:
+...       #
+...       # - a -- integer > 0
+...       # - b -- integer >= 0; a >= b
+...       #
+...       # OUTPUT:
+...       #
+...       # gcd(a,b)
 ...       x = a
 ...       y = b
 ...       while y != 0:
@@ -694,18 +692,16 @@ $v_1 \assign 0$;\quad $v_2 \assign 1$\;
 
 \begin{lstlisting}
 sage: def my_xgcd(a, b):
-...       """
-...       Returns s and t such that gcd(a,b) = as + bt.
-...
-...       INPUT:
-...
-...       - a -- integer
-...       - b -- integer, both a and b cannot be zero
-...
-...       OUTPUT:
-...
-...       Integers s,t such that gcd(a,b) = as + bt.
-...       """
+...       # Returns s and t such that gcd(a,b) = as + bt.
+...       #
+...       # INPUT:
+...       #
+...       # - a -- integer
+...       # - b -- integer, both a and b cannot be zero
+...       #
+...       # OUTPUT:
+...       #
+...       # Integers s,t such that gcd(a,b) = as + bt.
 ...       r1 = a; r2 = b
 ...       u1 = 1; u2 = 0
 ...       v1 = 0; v2 = 1
@@ -1003,9 +999,7 @@ $O(n + n) = O(2n)$.
 
 \begin{lstlisting}
 sage: def eratosthenes(n):
-...       """
-...       The Sieve of Eratosthenes.
-...       """
+...       # The Sieve of Eratosthenes.
 ...       A = [0..n]
 ...       j = 2
 ...       while j^2 <= n:
@@ -1093,9 +1087,7 @@ $P \assign [\,]$ \tcc*[f]{list of prime factors of $n$}\;
 %% \begin{lstlisting}
 %% sage: n = randint(2, 10^10)
 %% sage: def my_factor(n):
-%% ...       """
-%% ...       A simple factorization routine that uses the Sieve of Eratosthenes.
-%% ...       """
+%% ...       # A simple factorization routine that uses the Sieve of Eratosthenes.
 %% ...       N = Integer(n)
 %% ...       D = prime_range(floor(sqrt(n)))
 %% ...       D.append(next_prime(D[-1]))
