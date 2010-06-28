@@ -447,7 +447,7 @@ $y \assign b$\;
   $x \assign y$\;
   $y \assign r$\;
 }
-\Return $x$\;
+\Return $x$
 \caption{The Euclidean algorithm.}
 \index{Euclidean algorithm}
 \label{alg:unique_factorization:Euclidean_algorithm}
@@ -589,6 +589,159 @@ contradiction of our assumption that $d = \gcd(a,b)$. Thus $z = 1$
 and it follows that $c = d$. Therefore $\gcd(a,b) = ax + by$ for
 some $x,y \in \ZZ$.
 \end{proof}
+
+To compute the integers $x,y$ guaranteed by B\'ezout's identity, we
+extend the Euclidean algorithm as follows. Set up a table with five
+columns:
+\[
+\begin{array}{rcccc}
+  i  & q & r & u & v \\\hline
+  0  &   & m & 1 & 0 \\
+  1  &   & n & 0 & 1
+\end{array}
+\]
+To fill in the whole table, for each row $i \geq 2$ define
+\[
+q_i
+=
+\left\lfloor
+\frac {r_{i-2}} {r_{i-1}}
+\right\rfloor
+\]
+where the symbol $\lfloor x \rfloor$ denotes the integer part of $x$.
+Next, define
+%
+\begin{align*}
+r_i &= r_{i-2} - r_{i-1} q_i \\
+u_i &= u_{i-2} - u_{i-1} q_i \\
+v_i &= v_{i-2} - v_{i-1} q_i
+\end{align*}
+%
+and stop when we obtain $r_k = 0$ for some $k \in \ZZ$, at which point
+we get
+%
+\begin{align*}
+s &= u_{k-1}, \\
+t &= v_{k-1}.
+\end{align*}
+%
+Our discussion is summarized in
+Algorithm~\ref{alg:unique_factorization:extended_Euclidean_algorithm},
+called the
+\emph{extended Euclidean algorithm}\index{extended Euclidean algorithm}.
+
+\begin{algorithm}[!htpb]
+%% no semicolon at end of pseudocode statements
+\dontprintsemicolon
+%% data section
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+%% algorithm body
+\Input{Integers $a$ and $b$, both not zero.}
+\Output{Integers $s$ and $t$ such that $\gcd(a,b) = as + bt$.}
+\BlankLine
+$r_0 \assign a$;\quad $u_0 \assign 1$;\quad $v_0 \assign 0$\;
+$r_1 \assign b$;\quad $u_1 \assign 0$;\quad $v_1 \assign 1$\;
+$i \assign 1$\;
+\While{$r_i \neq 0$}{
+  $i \assign i + 1$\;
+  $q_i \assign \left\lfloor \frac {r_{i-2}} {r_{i-1}} \right\rfloor$\;
+  $r_i \assign r_{i-2} - r_{i-1} q_i$\;
+  $u_i \assign u_{i-2} - u_{i-1} q_i$\;
+  $v_i \assign v_{i-2} - v_{i-1} q_i$\;
+}
+\Return $(u_{i-1},\, v_{i-1})$
+\caption{The extended Euclidean algorithm.}
+\label{alg:unique_factorization:extended_Euclidean_algorithm}
+\index{extended Euclidean algorithm}
+\end{algorithm}
+
+The version of the extended Euclidean algorithm as presented in
+Algorithm~\ref{alg:unique_factorization:extended_Euclidean_algorithm}
+is inefficient in terms of memory requirement. The algorithm keeps
+track of all the $q_i, r_i, u_i, v_i$ while it runs, whereas we only
+need the last two computed values of $q_i, r_i, u_i, v_i$.
+Algorithm~\ref{alg:unique_factorization:extended_GCD_memory_efficient}
+presents a version of the extended Euclidean algorithm that is more
+memory efficient than
+Algorithm~\ref{alg:unique_factorization:extended_Euclidean_algorithm}.
+
+\begin{algorithm}[!htbp]
+%% no semicolon at end of pseudocode statements
+\dontprintsemicolon
+%% data section
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+%% algorithm body
+\Input{Integers $a$ and $b$, both not zero.}
+\Output{Integers $s$ and $t$ such that $\gcd(a,b) = as + bt$.}
+\BlankLine
+$r_1 \assign a$;\quad $r_2 \assign b$\;
+$u_1 \assign 1$;\quad $u_2 \assign 0$\;
+$v_1 \assign 0$;\quad $v_2 \assign 1$\;
+\While{$r_2 \neq 0$}{
+  $q \assign \left\lfloor \frac{r_1}{r_2} \right\rfloor$\;
+  $t \assign r_2$;\quad $r_2 \assign r_1 - r_2 q$;\quad $r_1 \assign t$\;
+  $t \assign u_2$;\quad $u_2 \assign u_1 - u_2 q$;\quad $u_1 \assign t$\;
+  $t \assign v_2$;\quad $v_2 \assign v_1 - v_2 q$;\quad $v_1 \assign t$\;
+}
+\Return $(u_1,\, v_1)$
+\caption{The extended Euclidean algorithm with less memory
+  requirement.}
+\label{alg:unique_factorization:extended_GCD_memory_efficient}
+\index{extended Euclidean algorithm}
+\end{algorithm}
+
+\begin{lstlisting}
+sage: def my_xgcd(a, b):
+...       """
+...       Returns s and t such that gcd(a,b) = as + bt.
+...
+...       INPUT:
+...
+...       - a -- integer
+...       - b -- integer, both a and b cannot be zero
+...
+...       OUTPUT:
+...
+...       Integers s,t such that gcd(a,b) = as + bt.
+...       """
+...       r1 = a; r2 = b
+...       u1 = 1; u2 = 0
+...       v1 = 0; v2 = 1
+...       while r2 != 0:
+...           q = floor(r1 / r2)
+...           t = r2; r2 = r1 - r2*q; r1 = t
+...           t = u2; u2 = u1 - u2*q; u1 = t
+...           t = v2; v2 = v1 - v2*q; v1 = t
+...       return (u1, v1)
+sage: D, S, T = xgcd(27, 12)
+sage: s, t = my_xgcd(27, 12)
+sage: S == s; T == t
+True
+True
+sage: s; t
+1
+-2
+sage: s, t = my_xgcd(27, 12)
+sage: gcd(27, 12)
+3
+sage: 27*s + 12*t
+3
+sage: a = Integer(randint(-10^200, 10^200))
+sage: b = Integer(randint(-10^200, 10^200))
+sage: while (a == 0) and (b == 0):
+....:     a = Integer(randint(-10^200, 10^200))
+....:     b = Integer(randint(-10^200, 10^200))
+....:
+sage: D, S, T = xgcd(a, b)
+sage: s, t = my_xgcd(a, b)
+sage: S == s; T == t
+True
+True
+sage: gcd(a, b) == D == a*s + b*t
+True
+\end{lstlisting}
 
 \begin{corollary}
 \label{cor:unique_factorization:prime_divisor_property}
@@ -750,7 +903,7 @@ $P \assign [\,]$ \nllabel{alg:Eratosthenes:get_primes_start} \tcc*[f]{list of pr
     append $a_i$ to $P$\;
   }
 }
-\Return $P$ \nllabel{alg:Eratosthenes:get_primes_end}\;
+\Return $P$ \nllabel{alg:Eratosthenes:get_primes_end}
 \caption{The Sieve of Eratosthenes.}
 \index{Sieve of Eratosthenes}
 \label{alg:unique_factorization:sieve_eratosthenes}
@@ -834,7 +987,7 @@ $P \assign [\,]$ \tcc*[f]{list of prime factors of $n$}\;
 \If{$\length(P) = 0$}{
   \Return $n$\;
 }
-\Return $P$\;
+\Return $P$
 \caption{Prime factorization by trial division.}
 \index{trial division}
 \label{alg:unique_factorization:trial_division}
