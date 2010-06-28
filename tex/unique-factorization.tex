@@ -898,6 +898,46 @@ Follows from the definition of prime and
 Theorem~\ref{thm:unique_factorization:prime_divisor_leq_sqrt_n}.
 \end{proof}
 
+\begin{lstlisting}
+sage: n = randint(2, 10^50)
+sage: D = sorted(divisors(n))
+sage: p = 2
+sage: for d in D:
+...       if is_prime(d):
+...           p = d
+...           break
+sage: bool(p <= sqrt(n))
+True
+sage: # a simple primality test
+sage: def my_primality(n):
+...       P = primes_first_n(prime_pi(sqrt(n)))
+...       if bool(P[-1] <= sqrt(n)):
+...           if bool(next_prime(P[-1]) <= sqrt(n)):
+...               P.append(next_prime(P[-1]))
+...       for p in P:
+...           if p.divides(n):
+...               print("n is composite")
+...               return
+...       print("n is prime")
+...       return
+sage: # first test that a composite is not prime
+sage: n = randint(2, 10^10)
+sage: while is_prime(n):
+...       n = randint(2, 10^10)
+sage: is_prime(n)
+False
+sage: my_primality(n)
+n is composite
+sage: # now test that a prime is indeed prime
+sage: n = randint(2, 10^10)
+sage: while not is_prime(n):
+...       n = randint(2, 10^10)
+sage: is_prime(n)
+True
+sage: my_primality(n)
+n is prime
+\end{lstlisting}
+
 \begin{algorithm}[!htpb]
 %% no semicolon at end of pseudocode statements
 \dontprintsemicolon
