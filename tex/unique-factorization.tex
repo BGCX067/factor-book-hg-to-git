@@ -975,12 +975,12 @@ $P \assign [\,]$ \nllabel{alg:Eratosthenes:get_primes_start} \tcc*[f]{list of pr
 
 Eratosthenes used
 Corollary~\ref{cor:unique_factorization:n_prime_iff_not_divisible_by_prime_leq_sqrt_n}
-as the basis of a clever technique, called the ``Sieve of
-Eratosthenes,''\index{Sieve of Eratosthenes} for finding all primes
-below a given integer $n > 1$. Start by listing all the integers from
-2 to $n$. Then eliminate all the composite numbers by striking out all
-multiples $2p, 3p, 4p, 5p, \dots$ of the primes $p \leq \sqrt{n}$. The
-remaining integers on the list are primes.
+as the basis of a clever technique, called the
+\emph{Sieve of Eratosthenes}\index{Sieve of Eratosthenes}, for finding
+all primes below a given integer $n > 1$. Start by listing all the
+integers from 2 to $n$. Then eliminate all the composite numbers by
+striking out all multiples $2p, 3p, 4p, 5p, \dots$ of the primes
+$p \leq \sqrt{n}$. The remaining integers on the list are primes.
 
 The Sieve of Eratosthenes\index{Sieve of Eratosthenes} is summarized
 in Algorithm~\ref{alg:unique_factorization:sieve_eratosthenes}. The
