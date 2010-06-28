@@ -1021,7 +1021,6 @@ sage: all(map(is_prime, P))
 True
 sage: all(map(is_prime, prime_range(n)))
 True
-sage:
 sage: P == prime_range(n)
 True
 \end{lstlisting}
@@ -1082,20 +1081,3 @@ $P \assign [\,]$ \tcc*[f]{list of prime factors of $n$}\;
 \index{trial division}
 \label{alg:unique_factorization:trial_division}
 \end{algorithm}
-
-%% \begin{lstlisting}
-%% sage: n = randint(2, 10^10)
-%% sage: def my_factor(n):
-%% ...       # A simple factorization routine that uses the Sieve of Eratosthenes.
-%% ...       N = Integer(n)
-%% ...       D = prime_range(floor(sqrt(n)))
-%% ...       D.append(next_prime(D[-1]))
-%% ...       P = []
-%% ...       for i in range(0, len(D)):
-%% ...           while gcd(D[i], N) > 1:
-%% ...               P.append(D[i])
-%% ...               N = N / D[i]
-%% ...       if len(P) == 0:
-%% ...           return N
-%% ...       return P
-%% \end{lstlisting}
