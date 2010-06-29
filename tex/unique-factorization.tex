@@ -350,12 +350,6 @@ two terms in the equation $a = b + c$, then $n$ also divides the
 third term.
 \end{proof}
 
-\begin{lemma}
-\label{lem:unique_factorization:gcd(a,b)_eq_gcd(b,r)}
-Let $a,b,q,r \in \ZZ$ with $b > 0$ and $0 \leq r < b$ such that
-$a = bq + r$. Then $\gcd(a,b) = \gcd(b,r)$.
-\end{lemma}
-
 \begin{lstlisting}
 sage: a = 42; b = 8
 sage: q, r = a.quo_rem(b); q; r
@@ -372,6 +366,12 @@ sage: q, r = a.quo_rem(b)
 sage: gcd(a, b) == gcd(b, r)
 True
 \end{lstlisting}
+
+\begin{lemma}
+\label{lem:unique_factorization:gcd(a,b)_eq_gcd(b,r)}
+Let $a,b,q,r \in \ZZ$ with $b > 0$ and $0 \leq r < b$ such that
+$a = bq + r$. Then $\gcd(a,b) = \gcd(b,r)$.
+\end{lemma}
 
 \begin{proof}
 Let $a,b,q,r \in \ZZ$ such that $a = bq + r$ where $b > 0$ and
