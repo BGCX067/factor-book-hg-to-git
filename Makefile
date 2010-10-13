@@ -5,6 +5,7 @@
 
 # change "template" to the name of your master .tex file
 FILE = book
+TEX_MASTER = $(FILE).tex
 
 all:
 	make latex
@@ -13,8 +14,10 @@ all:
 	make clean
 
 latex:
-	pdflatex $(FILE).tex
-	pdflatex $(FILE).tex
+	(TEXINPUTS=.:style:${TEXINPUTS:-:} && export TEXINPUTS && \
+	 pdflatex $(TEX_MASTER))
+	(TEXINPUTS=.:style:${TEXINPUTS:-:} && export TEXINPUTS && \
+	 pdflatex $(TEX_MASTER))
 
 clean:
 	rm -rfv *#
