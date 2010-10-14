@@ -16,7 +16,6 @@
 
 # Ensure you have a proper and working LaTeX/TeX distribution.
 
-# change "template" to the name of your master .tex file
 FILE = book
 TEX_MASTER = $(FILE).tex
 
