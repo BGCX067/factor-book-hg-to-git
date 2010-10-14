@@ -14,8 +14,7 @@
 # http://www.gnu.org/licenses/
 ###########################################################################
 
-# Make sure that the following commands are in your PATH variable:
-# latex, dvips, ps2pdf, rm
+# Ensure you have a proper and working LaTeX/TeX distribution.
 
 # change "template" to the name of your master .tex file
 FILE = book
