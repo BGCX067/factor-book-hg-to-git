@@ -20,12 +20,12 @@ FILE = book
 TEX_MASTER = $(FILE).tex
 
 all:
-	make latex
+	make pdf
 	makeindex $(FILE)
-	make latex
+	make pdf
 	make clean
 
-latex:
+pdf:
 	(TEXINPUTS=.:style:${TEXINPUTS:-:} && export TEXINPUTS && \
 	 pdflatex $(TEX_MASTER))
 	(TEXINPUTS=.:style:${TEXINPUTS:-:} && export TEXINPUTS && \
