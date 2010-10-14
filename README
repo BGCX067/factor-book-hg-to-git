@@ -19,9 +19,9 @@ To delete junk files resulting from the compilation process, run
 
 $ make clean
 
-The file util.sh is a script that interfaces with utilities under the
-directory bin/.
-
+In fact, a successful compilation should automatically delete any junk
+files resulting from the compilation process. The file util.sh is a script
+that interfaces with utilities under the directory bin/.
 
 [1] http://www.gnu.org/copyleft/fdl.html
 [2] http://sage.math.washington.edu/home/mvngu/
