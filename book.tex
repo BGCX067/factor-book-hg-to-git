@@ -34,33 +34,24 @@
   \today
 }
 
-%% front matter
+%% Front matter
 \frontmatter
-% Setting the TOC depth: only list chapters and sections
+%% Setting the TOC depth: only list chapters and sections
 \setcounter{tocdepth}{1}
 \tableofcontents
 \let\cleardoublepage\clearpage
 \listofalgorithms
 \addcontentsline{toc}{chapter}{List of Algorithms}
 \let\cleardoublepage\clearpage
-%% \listoffigures
-%% \addcontentsline{toc}{chapter}{List of Figures}
-%% \listoftables
-%% \addcontentsline{toc}{chapter}{List of Tables}
-
-\mainmatter
 
 %% Main document body
+\mainmatter
 \input{tex/unique-factorization.tex}
 
 %% Appendices
 \appendix
 \input{tex/license-gfdl.tex}
 
-%% %% Back matter
-%% \backmatter
-%% \bibliographystyle{bibliography.bst}
-%% \bibliography{bibliography.bib}
 \cleardoublepage
 \addcontentsline{toc}{chapter}{Index}
 \printindex
